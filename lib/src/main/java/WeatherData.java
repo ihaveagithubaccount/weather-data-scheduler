@@ -557,24 +557,24 @@ public class WeatherData extends AbstractWeatherData {
 	public float getWindSpeed () {
 		if (hasWind () && this.wind.hasSpeed ())
 			return this.wind.getSpeed ();
-		return Float.NaN;
+		return 0;
 	}
 
 	public float getWindGust () {
 		if (hasWind () && this.wind.hasGust ())
 			return this.wind.getGust ();
-		return Float.NaN;
+		return 0;
 	}
 
 	public int getWindDeg () {
 		if (hasWind () && this.wind.hasDeg ())
 			return this.wind.getDeg ();
-		return Integer.MIN_VALUE;
+		return 0;
 	}
 
 	public int getRain () {
 		if (!hasRain ())
-			return Integer.MIN_VALUE;
+			return 0;
 		int measure = this.rain.getMeasure (1);
 		if (measure != Integer.MIN_VALUE)
 			return measure;
@@ -583,7 +583,7 @@ public class WeatherData extends AbstractWeatherData {
 
 	public int getSnow () {
 		if (!hasSnow ())
-			return Integer.MIN_VALUE;
+			return 0;
 		int measure = this.snow.getMeasure (1);
 		if (measure != Integer.MIN_VALUE)
 			return measure;
@@ -591,7 +591,7 @@ public class WeatherData extends AbstractWeatherData {
 	}
 
 	public int getPrecipitation () {
-		int precipitation = Integer.MIN_VALUE;
+		int precipitation = 0;
 		if (hasRain ())
 			precipitation = getRain ();
 		if (hasSnow ())
