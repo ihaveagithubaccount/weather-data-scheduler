@@ -47,9 +47,16 @@ public class CurrentDataExtraction implements Job{
 
 		JSONObject weatherVransko = client.currentWeatherAtLocation(46.2445, 14.9512, 2);
 		WeatherData d = new WeatherData(weatherVransko);
-		updateDB(d,idVransko ,"vranskoempty");
+		updateDB(d,idVransko,"sim_vransko");
 		
 	}
+	
+	public static void extractDataForMontpellier(OwmClient client)
+			throws IOException, JSONException {
+		JSONObject weatherMontpellier = client.currentWeatherAtLocation(43.6109, 3.8772, 2);
+		WeatherData d = new WeatherData(weatherMontpellier);
+		
+	} 
 
 	public static void updateDB(WeatherData d, String id, String db) {
 
