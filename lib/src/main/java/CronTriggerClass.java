@@ -22,4 +22,5 @@ public class CronTriggerClass {
     	scheduler.scheduleJob(job, trigger);
 
     }
+	
 }

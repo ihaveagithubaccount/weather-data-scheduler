@@ -60,7 +60,6 @@ public class CurrentDataExtraction implements Job{
 	} 
 
 	public static void updateDB(WeatherData d, String id, String db) {
-
 		
 		try{  
 			String dateInitial = new java.text.SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new java.util.Date (d.getDateTime()*1000));
