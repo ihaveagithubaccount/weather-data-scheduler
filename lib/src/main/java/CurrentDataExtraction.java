@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import java.sql.*;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -76,12 +77,16 @@ public class CurrentDataExtraction implements Job{
 			String strHour = Integer.toString(hour);
 			int minute = Integer.parseInt(strTime[1]);
 			String strMinute = Integer.toString(minute);
+			Float temperature = d.getTemp();
+			temperature = (float) (temperature  -273.15);
+			DecimalFormat decimalFormat = new DecimalFormat("#.##");
+			float tempCelsius = Float.valueOf(decimalFormat.format(temperature));
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection con=DriverManager.getConnection("jdbc:mysql://zwgaqwfn759tj79r.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/t0i3cmz2i5xsawlh?autoReconnect=true&useSSL=false","nqaswcug1dveh8g6","fedjocik2pbwf9ez");  
 			Statement stmt=con.createStatement(); 
 			stmt.executeUpdate("INSERT INTO " + db +"(year, month, day, hour, minute, temperature, humidity, sea_level_pressure, precipitation, snowfall, total_cloud_cover, high_cloud_cover, medium_cloud_cover, low_cloud_cover, shortwave_radiation, wind_speed_10, wind_direction_10, wind_speed_80, wind_direction_80, wind_speed_900, wind_direction_900, wind_gust_10)"
-					+ "VALUES (" + year +"," + strMonth +"," + day +","+ strHour +"," + strMinute +"," + d.getTemp() +"," 
+					+ "VALUES (" + year +"," + strMonth +"," + day +","+ strHour +"," + strMinute +"," + tempCelsius +"," 
 							+ d.getHumidity() +"," + d.getPressure() +"," + d.getPrecipitation() +"," + d.getSnow() +"," 
 							+ d.getClouds().getAll() +","
 							+ 0 +","+ 0 +","+ 0 +","+ 0 +","+ d.getWindSpeed() +","+ d.getWindDeg() +","+ 0 +","+ 0 +","+ 0 +","+ 0 +","	
