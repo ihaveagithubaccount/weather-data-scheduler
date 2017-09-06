@@ -14,7 +14,7 @@ public class CronTriggerClass {
 
     	CronTrigger trigger = new CronTrigger();
     	trigger.setName("TriggerWeather");
-    	trigger.setCronExpression("0 0 * * * ?");
+    	trigger.setCronExpression("0 * * * * ?");
 
     	//schedule it
     	Scheduler scheduler = new StdSchedulerFactory().getScheduler();
